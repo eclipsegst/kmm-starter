@@ -1,20 +1,26 @@
 package com.zhaolongzhong.kmm.android
 
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
 import android.os.Bundle
 import com.zhaolongzhong.kmm.Greeting
-import android.widget.TextView
 
 fun greet(): String {
     return Greeting().greeting()
 }
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
+        setContent {
+            MainComposable(text = greet())
+        }
     }
+}
+
+@Composable
+fun MainComposable(text: String) {
+    Text("Compose $text")
 }

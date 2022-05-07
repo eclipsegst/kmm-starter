@@ -1,3 +1,4 @@
+val composeVersion = "1.1.1"
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -17,11 +18,21 @@ android {
             isMinifyEnabled = false
         }
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = composeVersion
+    }
+    buildFeatures {
+        compose = true
+    }
 }
 
 dependencies {
     implementation(project(":shared"))
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+    implementation("androidx.activity:activity-compose:1.3.1")
+
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+    implementation("androidx.compose.material:material:$composeVersion")
 }
